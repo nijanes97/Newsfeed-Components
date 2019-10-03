@@ -85,6 +85,21 @@ const data = [
     thirdParagraph: `Hodor hodor - hodor... Hodor hodor hodor hodor. Hodor. Hodor! Hodor hodor, hodor hodor hodor hodor hodor; hodor hodor? Hodor!
           Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
           Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
+  },
+  {
+    title: 'Test End Article',
+    date: 'Sep 2nd, 2019',
+    firstParagraph: `Test test test test test test test test test test test test test test test test test test test test test test test test test
+    test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test`,
+
+    secondParagraph: `Hodor, hodor. Hodor. Hodor, hodor, hodor. Hodor hodor, hodor. Hodor hodor, hodor, hodor hodor. Hodor! Hodor hodor, hodor;
+          hodor hodor hodor? Hodor, hodor. Hodor. Hodor, hodor - HODOR hodor, hodor hodor hodor! Hodor, hodor. Hodor. Hodor, HODOR
+          hodor, hodor hodor, hodor, hodor hodor. Hodor hodor - hodor - hodor... Hodor hodor hodor hodor hodor hodor hodor?! Hodor
+          hodor - hodor hodor hodor. Hodor. Hodor hodor... Hodor hodor hodor hodor hodor? `,
+
+    thirdParagraph: `Hodor hodor - hodor... Hodor hodor hodor hodor. Hodor. Hodor! Hodor hodor, hodor hodor hodor hodor hodor; hodor hodor? Hodor!
+          Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
+          Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
   }
 ];
 
@@ -112,3 +127,45 @@ const data = [
   Step 5: Add a new article to the array. Make sure it is in the same format as the others. Refresh the page to see the new article.
 
 */
+
+const articles = document.querySelector('.articles');
+
+data.forEach(element => {
+  articles.appendChild(createArticle(element));
+})
+
+function createArticle(object){
+
+  const article = document.createElement('div');
+  const articleTitle = document.createElement('h2');
+  const articleDate = document.createElement('p');
+  const articleContent1 = document.createElement('p');
+  const articleContent2 = document.createElement('p');
+  const articleContent3 = document.createElement('p');
+  const articleBtn = document.createElement('span');
+
+  article.classList.add('article');
+  articleDate.classList.add('date');
+  articleBtn.classList.add('expandButton');
+
+  articleTitle.textContent = object.title;
+  articleDate.textContent = object.date;
+  articleContent1.textContent = object.firstParagraph;
+  articleContent2.textContent = object.secondParagraph;
+  articleContent3.textContent = object.thirdParagraph;
+  articleBtn.textContent = 'Expand';
+
+  articleBtn.addEventListener('click', () => {
+    article.classList.toggle('article-open');
+  })
+
+  article.appendChild(articleTitle);
+  article.appendChild(articleDate);
+  article.appendChild(articleContent1);
+  article.appendChild(articleContent2);
+  article.appendChild(articleContent3);
+  article.appendChild(articleBtn);
+
+  return article;
+
+}
